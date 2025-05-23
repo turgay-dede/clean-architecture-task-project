@@ -39,4 +39,17 @@ public class Task {
         }
         this.status = TaskStatus.DONE;
     }
+
+    public void updateDetails(String title, String description, TaskStatus status,
+                              String assignee, LocalDate dueDate) {
+        if (title == null || title.isBlank()) throw new IllegalArgumentException("Title cannot be empty");
+        if (dueDate.isBefore(LocalDate.now())) throw new IllegalArgumentException("Due date cannot be in the past");
+
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.assignee = assignee;
+        this.dueDate = dueDate;
+    }
+
 }

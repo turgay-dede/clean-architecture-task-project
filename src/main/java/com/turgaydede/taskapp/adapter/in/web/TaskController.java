@@ -3,7 +3,10 @@ package com.turgaydede.taskapp.adapter.in.web;
 import com.turgaydede.taskapp.application.port.in.CompleteTaskUseCase;
 import com.turgaydede.taskapp.application.port.in.CreateTaskUseCase;
 import com.turgaydede.taskapp.application.port.in.GetTaskUseCase;
+import com.turgaydede.taskapp.application.port.in.UpdateTaskUseCase;
+import com.turgaydede.taskapp.application.service.UpdateTaskCommand;
 import com.turgaydede.taskapp.domain.model.Task;
+import com.turgaydede.taskapp.domain.model.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
-public class CreateTaskController {
+public class TaskController {
 
     private final CreateTaskUseCase createTaskUseCase;
     private final GetTaskUseCase getTaskUseCase;
     private final CompleteTaskUseCase completeTaskUseCase;
+    private final UpdateTaskUseCase updateTaskUseCase;
 
     @PostMapping
     public ResponseEntity<TaskResponse> createTask(@RequestBody CreateTaskRequest request) {
@@ -35,4 +39,22 @@ public class CreateTaskController {
         return ResponseEntity.ok().build();
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskResponse> updateTask(
+            @PathVariable Long id,
+            @RequestBody UpdateTaskRequest request) {
+
+        UpdateTaskCommand command = new UpdateTaskCommand(
+                id,
+                request.getTitle(),
+                request.getDescription(),
+                TaskStatus.valueOf(request.getStatus()),
+                request.getAssignee(),
+                request.getDueDate()
+        );
+
+        Task updated = updateTaskUseCase.updateTask(command);
+        return ResponseEntity.ok(TaskResponse.from(updated));
+    }
 }
