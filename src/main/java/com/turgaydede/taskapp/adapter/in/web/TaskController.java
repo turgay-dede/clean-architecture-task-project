@@ -18,6 +18,7 @@ public class TaskController {
     private final CompleteTaskUseCase completeTaskUseCase;
     private final UpdateTaskUseCase updateTaskUseCase;
     private final AssignTaskToUserUseCase assignTaskToUserUseCase;
+    private final DeleteTaskUseCase deleteTaskUseCase;
 
     @PostMapping
     public ResponseEntity<TaskResponse> createTask(@RequestBody CreateTaskRequest request) {
@@ -63,5 +64,11 @@ public class TaskController {
 
         assignTaskToUserUseCase.assign(id, request.getAssignee());
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+        deleteTaskUseCase.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 }
