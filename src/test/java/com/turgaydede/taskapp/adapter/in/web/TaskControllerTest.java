@@ -1,6 +1,7 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.turgaydede.taskapp.application.exception.TaskNotFoundException;
 import com.turgaydede.taskapp.application.port.in.*;
 import com.turgaydede.taskapp.application.service.UpdateTaskCommand;
 import com.turgaydede.taskapp.domain.model.Task;
@@ -136,4 +137,14 @@ public class TaskControllerTest {
         mockMvc.perform(delete("/tasks/10"))
                 .andExpect(status().isNoContent());
     }
+
+    @Test
+    void shouldReturnNotFoundForUnknownTask() throws Exception {
+        Mockito.when(getTaskUseCase.getTaskById(999L))
+                .thenThrow(new TaskNotFoundException(999L));
+
+        mockMvc.perform(get("/tasks/999"))
+                .andExpect(status().isNotFound());
+    }
+
 }
