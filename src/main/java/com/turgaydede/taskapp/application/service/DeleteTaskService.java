@@ -3,9 +3,7 @@ package com.turgaydede.taskapp.application.service;
 import com.turgaydede.taskapp.application.port.in.DeleteTaskUseCase;
 import com.turgaydede.taskapp.application.port.out.DeleteTaskPort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
 public class DeleteTaskService implements DeleteTaskUseCase {
 

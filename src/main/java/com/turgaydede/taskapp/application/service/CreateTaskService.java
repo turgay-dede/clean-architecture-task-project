@@ -3,16 +3,12 @@ package com.turgaydede.taskapp.application.service;
 import com.turgaydede.taskapp.application.port.in.CreateTaskUseCase;
 import com.turgaydede.taskapp.application.port.out.SaveTaskPort;
 import com.turgaydede.taskapp.domain.model.Task;
-import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
-@Service
+@RequiredArgsConstructor
 public class CreateTaskService implements CreateTaskUseCase {
 
     private final SaveTaskPort saveTaskPort;
-
-    public CreateTaskService(SaveTaskPort saveTaskPort) {
-        this.saveTaskPort = saveTaskPort;
-    }
 
     @Override
     public Task createTask(CreateTaskCommand command) {

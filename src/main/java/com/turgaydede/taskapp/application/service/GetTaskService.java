@@ -5,9 +5,7 @@ import com.turgaydede.taskapp.application.port.in.GetTaskUseCase;
 import com.turgaydede.taskapp.application.port.out.LoadTaskPort;
 import com.turgaydede.taskapp.domain.model.Task;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
 public class GetTaskService implements GetTaskUseCase {
 
