@@ -1,5 +1,7 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
+import com.turgaydede.taskapp.application.exception.InvalidTaskException;
+import com.turgaydede.taskapp.application.exception.InvalidTaskStateException;
 import com.turgaydede.taskapp.application.exception.TaskNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,24 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(status).body(errorBody);
     }
+
     @ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<?> handleNotFound(TaskNotFoundException ex) {
+    public ResponseEntity<Object> handleTaskNotFound(TaskNotFoundException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidTaskException.class)
+    public ResponseEntity<Object> handleInvalidTask(InvalidTaskException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidTaskStateException.class)
+    public ResponseEntity<Object> handleInvalidState(InvalidTaskStateException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleGeneric(Exception ex) {
+        return buildErrorResponse("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

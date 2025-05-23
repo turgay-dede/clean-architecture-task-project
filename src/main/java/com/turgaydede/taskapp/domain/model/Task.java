@@ -1,8 +1,11 @@
 package com.turgaydede.taskapp.domain.model;
 
+import com.turgaydede.taskapp.application.exception.InvalidTaskException;
+import com.turgaydede.taskapp.application.exception.InvalidTaskStateException;
 import lombok.*;
 
 import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,10 +22,10 @@ public class Task {
 
     public static Task create(String title, String description, String assignee, LocalDate dueDate) {
         if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Title must not be empty");
+            throw new InvalidTaskException("Task title must not be empty.");
         }
         if (dueDate.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("Due date cannot be in the past");
+            throw new InvalidTaskException("Due date cannot be in the past.");
         }
         return new Task(null, title, description, TaskStatus.OPEN, assignee, dueDate);
     }
@@ -32,7 +35,7 @@ public class Task {
             return;
         }
         if (status != TaskStatus.OPEN && status != TaskStatus.IN_PROGRESS) {
-            throw new IllegalStateException("Only OPEN or IN_PROGRESS tasks can be marked as DONE");
+            throw new InvalidTaskStateException("Only OPEN or IN_PROGRESS tasks can be marked as DONE.");
         }
         this.status = TaskStatus.DONE;
     }
