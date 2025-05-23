@@ -1,0 +1,35 @@
+type Query {
+  getTask(id: ID!): TaskResponse
+}
+
+type Mutation {
+  createTask(input: CreateTaskRequest!): TaskResponse
+  completeTask(id: ID!): Boolean
+  updateTask(id: ID!, input: UpdateTaskRequest!): TaskResponse
+  assignTask(id: ID!, assignee: String!): Boolean
+  deleteTask(id: ID!): Boolean
+}
+
+type TaskResponse {
+  id: ID!
+  title: String!
+  description: String
+  status: String!
+  assignee: String
+  dueDate: String
+}
+
+input CreateTaskRequest {
+  title: String!
+  description: String
+  assignee: String
+  dueDate: String!
+}
+
+input UpdateTaskRequest {
+  title: String!
+  description: String
+  status: String!
+  assignee: String
+  dueDate: String!
+}
