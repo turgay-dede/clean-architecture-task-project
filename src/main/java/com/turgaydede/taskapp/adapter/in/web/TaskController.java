@@ -1,9 +1,6 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
-import com.turgaydede.taskapp.application.port.in.CompleteTaskUseCase;
-import com.turgaydede.taskapp.application.port.in.CreateTaskUseCase;
-import com.turgaydede.taskapp.application.port.in.GetTaskUseCase;
-import com.turgaydede.taskapp.application.port.in.UpdateTaskUseCase;
+import com.turgaydede.taskapp.application.port.in.*;
 import com.turgaydede.taskapp.application.service.UpdateTaskCommand;
 import com.turgaydede.taskapp.domain.model.Task;
 import com.turgaydede.taskapp.domain.model.TaskStatus;
@@ -20,6 +17,7 @@ public class TaskController {
     private final GetTaskUseCase getTaskUseCase;
     private final CompleteTaskUseCase completeTaskUseCase;
     private final UpdateTaskUseCase updateTaskUseCase;
+    private final AssignTaskToUserUseCase assignTaskToUserUseCase;
 
     @PostMapping
     public ResponseEntity<TaskResponse> createTask(@RequestBody CreateTaskRequest request) {
@@ -56,5 +54,14 @@ public class TaskController {
 
         Task updated = updateTaskUseCase.updateTask(command);
         return ResponseEntity.ok(TaskResponse.from(updated));
+    }
+
+    @PatchMapping("/{id}/assign")
+    public ResponseEntity<Void> assign(
+            @PathVariable Long id,
+            @RequestBody AssignTaskRequest request) {
+
+        assignTaskToUserUseCase.assign(id, request.getAssignee());
+        return ResponseEntity.ok().build();
     }
 }

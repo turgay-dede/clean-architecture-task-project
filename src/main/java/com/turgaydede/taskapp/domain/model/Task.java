@@ -52,4 +52,12 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public void assignTo(String assignee) {
+        if (assignee == null || assignee.isBlank()) {
+            throw new IllegalArgumentException("Assignee cannot be null or blank");
+        }
+        this.assignee = assignee;
+    }
+
+
 }
