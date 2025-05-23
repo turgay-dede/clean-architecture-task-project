@@ -1,7 +1,7 @@
 package com.turgaydede.taskapp.domain.model;
 
-import com.turgaydede.taskapp.application.exception.InvalidTaskException;
-import com.turgaydede.taskapp.application.exception.InvalidTaskStateException;
+import com.turgaydede.taskapp.domain.exception.InvalidTaskException;
+import com.turgaydede.taskapp.domain.exception.InvalidTaskStateException;
 import lombok.*;
 
 import java.time.LocalDate;

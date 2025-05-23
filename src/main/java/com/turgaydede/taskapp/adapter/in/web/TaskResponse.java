@@ -1,12 +1,14 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
 import com.turgaydede.taskapp.domain.model.Task;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TaskResponse {
     private Long id;
     private String title;

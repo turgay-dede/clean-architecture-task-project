@@ -1,8 +1,8 @@
 package com.turgaydede.taskapp.application.service;
 
-import com.turgaydede.taskapp.application.exception.TaskNotFoundException;
 import com.turgaydede.taskapp.application.port.in.GetTaskUseCase;
 import com.turgaydede.taskapp.application.port.out.LoadTaskPort;
+import com.turgaydede.taskapp.domain.exception.TaskNotFoundException;
 import com.turgaydede.taskapp.domain.model.Task;
 import lombok.RequiredArgsConstructor;
 

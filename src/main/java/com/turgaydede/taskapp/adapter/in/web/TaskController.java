@@ -1,9 +1,8 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
 import com.turgaydede.taskapp.application.port.in.*;
-import com.turgaydede.taskapp.application.service.UpdateTaskCommand;
+import com.turgaydede.taskapp.application.port.in.UpdateTaskCommand;
 import com.turgaydede.taskapp.domain.model.Task;
-import com.turgaydede.taskapp.domain.model.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +47,7 @@ public class TaskController {
                 id,
                 request.getTitle(),
                 request.getDescription(),
-                TaskStatus.valueOf(request.getStatus()),
+                request.getStatus(),
                 request.getAssignee(),
                 request.getDueDate()
         );

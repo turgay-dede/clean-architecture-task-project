@@ -1,10 +1,12 @@
 package com.turgaydede.taskapp.application.service;
 
-import com.turgaydede.taskapp.application.exception.TaskNotFoundException;
+import com.turgaydede.taskapp.application.port.in.UpdateTaskCommand;
 import com.turgaydede.taskapp.application.port.in.UpdateTaskUseCase;
 import com.turgaydede.taskapp.application.port.out.LoadTaskPort;
 import com.turgaydede.taskapp.application.port.out.SaveTaskPort;
+import com.turgaydede.taskapp.domain.exception.TaskNotFoundException;
 import com.turgaydede.taskapp.domain.model.Task;
+import com.turgaydede.taskapp.domain.model.TaskStatus;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class UpdateTaskService implements UpdateTaskUseCase {
         task.updateDetails(
             command.title(),
             command.description(),
-            command.status(),
+            TaskStatus.valueOf(command.status()),
             command.assignee(),
             command.dueDate()
         );

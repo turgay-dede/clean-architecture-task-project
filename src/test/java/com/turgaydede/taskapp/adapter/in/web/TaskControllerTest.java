@@ -1,9 +1,8 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.turgaydede.taskapp.application.exception.TaskNotFoundException;
 import com.turgaydede.taskapp.application.port.in.*;
-import com.turgaydede.taskapp.application.service.UpdateTaskCommand;
+import com.turgaydede.taskapp.domain.exception.TaskNotFoundException;
 import com.turgaydede.taskapp.domain.model.Task;
 import com.turgaydede.taskapp.domain.model.TaskStatus;
 import org.junit.jupiter.api.Test;

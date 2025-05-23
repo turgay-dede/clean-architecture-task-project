@@ -1,8 +1,8 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
-import com.turgaydede.taskapp.application.exception.InvalidTaskException;
-import com.turgaydede.taskapp.application.exception.InvalidTaskStateException;
-import com.turgaydede.taskapp.application.exception.TaskNotFoundException;
+import com.turgaydede.taskapp.domain.exception.InvalidTaskException;
+import com.turgaydede.taskapp.domain.exception.InvalidTaskStateException;
+import com.turgaydede.taskapp.domain.exception.TaskNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

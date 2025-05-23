@@ -1,6 +1,6 @@
 package com.turgaydede.taskapp.adapter.in.web;
 
-import com.turgaydede.taskapp.application.service.CreateTaskCommand;
+import com.turgaydede.taskapp.application.port.in.CreateTaskCommand;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.turgaydede.taskapp.application.service;
+package com.turgaydede.taskapp.application.port.in;
 
 import java.time.LocalDate;
 

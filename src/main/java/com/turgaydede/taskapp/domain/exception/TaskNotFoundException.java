@@ -1,4 +1,4 @@
-package com.turgaydede.taskapp.application.exception;
+package com.turgaydede.taskapp.domain.exception;
 
 public class TaskNotFoundException extends RuntimeException {
 

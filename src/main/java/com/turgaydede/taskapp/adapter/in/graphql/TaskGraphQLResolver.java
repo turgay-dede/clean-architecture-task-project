@@ -4,9 +4,8 @@ import com.turgaydede.taskapp.adapter.in.web.CreateTaskRequest;
 import com.turgaydede.taskapp.adapter.in.web.TaskResponse;
 import com.turgaydede.taskapp.adapter.in.web.UpdateTaskRequest;
 import com.turgaydede.taskapp.application.port.in.*;
-import com.turgaydede.taskapp.application.service.UpdateTaskCommand;
+import com.turgaydede.taskapp.application.port.in.UpdateTaskCommand;
 import com.turgaydede.taskapp.domain.model.Task;
-import com.turgaydede.taskapp.domain.model.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -50,7 +49,7 @@ public class TaskGraphQLResolver {
                 id,
                 input.getTitle(),
                 input.getDescription(),
-                TaskStatus.valueOf(input.getStatus()),
+                input.getStatus(),
                 input.getAssignee(),
                 input.getDueDate()
             )
